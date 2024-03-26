@@ -205,11 +205,17 @@ ul li.item-menu a .icon > i{
     margin-bottom: 10px; 
 }
 
+#buscar:hover{
+    transition: 0.7s;
+    background-color: #07d300;
+    transform: scale(1.02);
+}
+
 #resultado{
     margin-top: 20px;
     background-color: #fff;
     border-radius: 5px;
-    width: 1000px;
+    width: 730px;
 }
 
 .icon-buscar {
@@ -236,4 +242,19 @@ ul li.item-menu a .icon > i{
 .endereco-table td:nth-child(3) {
     font-weight: bold;
     width: 5%;
+}
+
+.tabela {
+    border-collapse: collapse;
+    width: 85%;
+}
+
+.tabela td, .tabela th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabela th {
+    background-color: #f2f2f2;
 }

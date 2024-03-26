@@ -22,14 +22,14 @@
             </li>
 
             <li class="item-menu ativo">
-                <a href="historico.html">
+                <a href="#">
                     <span class="icon"><i class="bi bi-columns-gap"></i></span>
                     <span class="txt-link">Histórico</span>
                 </a>
             </li>
 
             <li class="item-menu">
-                <a href="#">
+                <a href="conta.html">
                     <span class="icon"><i class="bi bi-person-fill"></i></span>
                     <span class="txt-link">Conta</span>
                 </a>
@@ -37,6 +37,52 @@
         </ul>
     </nav>
 
+    <div class="quadrado">
+    <table class="tabela">
+        <tr>
+            <th>Logradouro</th>
+            <th>Complemento</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>UF</th>
+        </tr>
+        <?php
+        session_start();
+
+        if (!isset($_SESSION["id"])) {
+            die("Usuário não autenticado.");
+        }
+
+        include("conecta.php");
+
+        $id = $_SESSION["id"];
+
+        $comando = $pdo->prepare("SELECT * FROM enderecos WHERE id = :id");
+        $comando->bindParam(':id', $id);
+        $comando->execute();
+
+        $enderecos = $comando->fetchAll();
+
+        foreach ($enderecos as $endereco) {
+            $logradouro = $endereco["logradouro"];
+            $complemento = $endereco["complemento"];
+            $bairro = $endereco["bairro"];
+            $cidade = $endereco["cidade"];
+            $uf = $endereco["uf"];
+            echo "
+                <tr>
+                    <td>$logradouro</td>
+                    <td>$complemento</td>
+                    <td>$bairro</td>
+                    <td>$cidade</td>
+                    <td>$uf</td>
+                </tr>";
+        }
+        ?>
+    </table>
+</div>
+
     <script src="js/script.js"></script>
+
 </body>
 </html>

@@ -18,21 +18,6 @@ btnExp.addEventListener('click', function(){
     menuSide.classList.toggle('expandir')
 })
 
-
-function abrirPag(a){
-    let localPag = document.querySelector('.paginas')
-    let pag = new XMLHttpRequest()
-
-    pag.onreadystatechange = () => {
-        if(pag.readyState == 4 && pag.status == 200){
-            localPag.innerHTML = pag.response
-        }
-    }
-
-    pag.open('GET', `/${a}.html`)
-    pag.send()
-}
-
 function consultaEndereco() {
     let cep = document.querySelector ('#cep').value;
 
@@ -52,7 +37,7 @@ function consultaEndereco() {
 }
 
 function mostrarEndereco(dados) {
-    let resultado = document.querySelector('#resultado')
+    let resultado = document.querySelector('#resultado');
 
     resultado.innerHTML = `
     <table class="endereco-table">
@@ -69,4 +54,15 @@ function mostrarEndereco(dados) {
             <td>${dados.localidade} - ${dados.uf}</td>
         </tr>
     </table>`;
+
+    // Enviar os dados para o servidor
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'adicionar_endereco.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send(`logradouro=${dados.logradouro}&complemento=${dados.complemento}&bairro=${dados.bairro}&localidade=${dados.localidade}&uf=${dados.uf}`);
 }

@@ -22,7 +22,7 @@
             </li>
 
             <li class="item-menu">
-                <a href="historico.html">
+                <a href="historico.php">
                     <span class="icon"><i class="bi bi-columns-gap"></i></span>
                     <span class="txt-link">Histórico</span>
                 </a>
