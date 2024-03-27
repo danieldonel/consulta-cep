@@ -40,11 +40,11 @@
     <div class="quadrado">
     <table class="tabela">
         <tr>
-            <th>Logradouro</th>
-            <th>Complemento</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th>UF</th>
+            <th><a href="?campo=logradouro&ordenacao=<?php echo isset($_GET['campo']) && $_GET['campo'] == 'logradouro' && isset($_GET['ordenacao']) && $_GET['ordenacao'] == 'ASC' ? 'DESC' : 'ASC'; ?>">Logradouro <?php echo ($_GET['campo'] ?? '') === 'logradouro' ? ($_GET['ordenacao'] ?? '') === 'ASC' ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>' : ''; ?></a></th>
+            <th><a href="?campo=complemento&ordenacao=<?php echo isset($_GET['campo']) && $_GET['campo'] == 'complemento' && isset($_GET['ordenacao']) && $_GET['ordenacao'] == 'ASC' ? 'DESC' : 'ASC'; ?>">Complemento <?php echo ($_GET['campo'] ?? '') === 'complemento' ? ($_GET['ordenacao'] ?? '') === 'ASC' ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>' : ''; ?></a></th>
+            <th><a href="?campo=bairro&ordenacao=<?php echo isset($_GET['campo']) && $_GET['campo'] == 'bairro' && isset($_GET['ordenacao']) && $_GET['ordenacao'] == 'ASC' ? 'DESC' : 'ASC'; ?>">Bairro <?php echo ($_GET['campo'] ?? '') === 'bairro' ? ($_GET['ordenacao'] ?? '') === 'ASC' ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>' : ''; ?></a></th>
+            <th><a href="?campo=cidade&ordenacao=<?php echo isset($_GET['campo']) && $_GET['campo'] == 'cidade' && isset($_GET['ordenacao']) && $_GET['ordenacao'] == 'ASC' ? 'DESC' : 'ASC'; ?>">Cidade <?php echo ($_GET['campo'] ?? '') === 'cidade' ? ($_GET['ordenacao'] ?? '') === 'ASC' ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>' : ''; ?></a></th>
+            <th><a href="?campo=uf&ordenacao=<?php echo isset($_GET['campo']) && $_GET['campo'] == 'uf' && isset($_GET['ordenacao']) && $_GET['ordenacao'] == 'ASC' ? 'DESC' : 'ASC'; ?>">UF <?php echo ($_GET['campo'] ?? '') === 'uf' ? ($_GET['ordenacao'] ?? '') === 'ASC' ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>' : ''; ?></a></th>
         </tr>
         <?php
         session_start();
@@ -57,7 +57,11 @@
 
         $id = $_SESSION["id"];
 
-        $comando = $pdo->prepare("SELECT * FROM enderecos WHERE id = :id");
+        $ordenacao = isset($_GET['ordenacao']) ? $_GET['ordenacao'] : 'ASC'; // Verifica se foi passado um parâmetro de ordenação, caso contrário, assume ASC por padrão
+        $campo = isset($_GET['campo']) ? $_GET['campo'] : 'logradouro'; // Verifica se foi passado um campo de ordenação, caso contrário, assume logradouro por padrão
+
+
+        $comando = $pdo->prepare("SELECT * FROM enderecos WHERE id = :id ORDER BY $campo $ordenacao");
         $comando->bindParam(':id', $id);
         $comando->execute();
 
@@ -81,6 +85,7 @@
         ?>
     </table>
 </div>
+
 
     <script src="js/script.js"></script>
 

@@ -6,7 +6,7 @@ body {
     padding: 0;
     color: #023047;
     background-color: #dbdbdb;
-    height: 900vh;
+    height: 100%;
 }
 
 .page {
@@ -103,7 +103,7 @@ nav.menu-lateral{
     width: 70px;
     height: 100%;
     background-color: #202020;
-    padding: 40px 0 40px 1%;
+    padding: 40px 0 0 5px;
     box-shadow: 3px 0 0 #059900;
     position: fixed;
     top: 0;
@@ -118,7 +118,7 @@ nav.menu-lateral.expandir{
 
 .btn-expandir{
     width: 100%;
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
 .btn-expandir > i{
@@ -257,4 +257,13 @@ ul li.item-menu a .icon > i{
 
 .tabela th {
     background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none; 
+    color: #333; 
+}
+
+a:hover {
+    color: #666;
 }
