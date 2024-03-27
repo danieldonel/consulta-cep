@@ -66,3 +66,18 @@ function mostrarEndereco(dados) {
     };
     xhr.send(`logradouro=${dados.logradouro}&complemento=${dados.complemento}&bairro=${dados.bairro}&localidade=${dados.localidade}&uf=${dados.uf}`);
 }
+
+function confirmarExclusao(id, logradouro, cidade) {
+    if (confirm("Tem certeza que deseja excluir este endereço?")) {
+        // Envia uma requisição AJAX para o script PHP que exclui o endereço
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Atualiza a página após a exclusão ser realizada
+                window.location.reload();
+            }
+        };
+        xhttp.open("GET", "excluir_endereco.php?id=" + id + "&logradouro=" + logradouro + "&cidade=" + cidade,  true);
+        xhttp.send();
+    }
+}

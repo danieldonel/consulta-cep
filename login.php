@@ -10,22 +10,22 @@ if (!empty($email) && !empty($senha)) {
     $comando->bindParam(":email", $email);
     $comando->bindParam(":senha", $senha);
     $resultado = $comando->execute();
-    $linhas = $comando->fetchAll();
+    $linhas = $comando->fetchAll(); // Busca todas as linhas correspondentes
 
     if (count($linhas) > 0) {
         $id = $linhas[0]["id"];
         $nome = $linhas[0]["nome"];
         $_SESSION["logado"] = true;
         $_SESSION["nome"] = $nome;
-        $_SESSION["id"] = $id;
+        $_SESSION["id"] = $id; // Adiciona o ID à sessão
         header("Location: consulta.php");
         exit;
     } else {
-        echo "E-mail ou senha incorretos.";
+        echo '<script>alert("E-mail ou senha incorretos"); window.location.href = "index.html";</script>';
         exit;
     }
 } else {
-    echo "E-mail e senha são obrigatórios.";
+    echo '<script>alert("E-mail e senha são obrigatórios"); window.location.href = "index.html";</script>';
     exit;
 }
 ?>

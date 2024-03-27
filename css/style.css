@@ -4,7 +4,7 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    color: #023047;
+    color: black;
     background-color: #dbdbdb;
     height: 100%;
 }
@@ -266,4 +266,26 @@ a {
 
 a:hover {
     color: #666;
+}
+
+.btn-excluir {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.btn-excluir:hover {
+    background-color: #c82333;
+}
+
+.btn-excluir i {
+    font-size: 15px;
 }

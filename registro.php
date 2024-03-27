@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +45,7 @@
             <th><a href="?campo=bairro&ordenacao=<?php echo isset($_GET['campo']) && $_GET['campo'] == 'bairro' && isset($_GET['ordenacao']) && $_GET['ordenacao'] == 'ASC' ? 'DESC' : 'ASC'; ?>">Bairro <?php echo ($_GET['campo'] ?? '') === 'bairro' ? ($_GET['ordenacao'] ?? '') === 'ASC' ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>' : ''; ?></a></th>
             <th><a href="?campo=cidade&ordenacao=<?php echo isset($_GET['campo']) && $_GET['campo'] == 'cidade' && isset($_GET['ordenacao']) && $_GET['ordenacao'] == 'ASC' ? 'DESC' : 'ASC'; ?>">Cidade <?php echo ($_GET['campo'] ?? '') === 'cidade' ? ($_GET['ordenacao'] ?? '') === 'ASC' ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>' : ''; ?></a></th>
             <th><a href="?campo=uf&ordenacao=<?php echo isset($_GET['campo']) && $_GET['campo'] == 'uf' && isset($_GET['ordenacao']) && $_GET['ordenacao'] == 'ASC' ? 'DESC' : 'ASC'; ?>">UF <?php echo ($_GET['campo'] ?? '') === 'uf' ? ($_GET['ordenacao'] ?? '') === 'ASC' ? '<i class="bi bi-caret-up-fill"></i>' : '<i class="bi bi-caret-down-fill"></i>' : ''; ?></a></th>
+            <th>Ações</th>
         </tr>
         <?php
         session_start();
@@ -57,8 +58,8 @@
 
         $id = $_SESSION["id"];
 
-        $ordenacao = isset($_GET['ordenacao']) ? $_GET['ordenacao'] : 'ASC'; // Verifica se foi passado um parâmetro de ordenação, caso contrário, assume ASC por padrão
-        $campo = isset($_GET['campo']) ? $_GET['campo'] : 'logradouro'; // Verifica se foi passado um campo de ordenação, caso contrário, assume logradouro por padrão
+        $ordenacao = isset($_GET['ordenacao']) ? $_GET['ordenacao'] : 'ASC';
+        $campo = isset($_GET['campo']) ? $_GET['campo'] : 'logradouro';
 
 
         $comando = $pdo->prepare("SELECT * FROM enderecos WHERE id = :id ORDER BY $campo $ordenacao");
@@ -80,6 +81,11 @@
                     <td>$bairro</td>
                     <td>$cidade</td>
                     <td>$uf</td>
+                    <td style=\"display: flex; justify-content: center; align-items: center;\">
+                        <button class=\"btn-excluir\" onclick=\"confirmarExclusao('$endereco[id]', '$endereco[logradouro]', '$endereco[cidade]')\">
+                            <i class=\"bi bi-trash\"></i>
+                        </button>
+                    </td>
                 </tr>";
         }
         ?>
