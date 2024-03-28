@@ -28,7 +28,7 @@
                 </a>
             </li>
 
-            < <li class="item-menu">
+            <li class="item-menu">
                 <a href="#" onclick="confirmarLogout()">
                     <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
                     <span class="txt-link">Logout</span>
