@@ -24,7 +24,7 @@
             <li class="item-menu ativo">
                 <a href="#">
                     <span class="icon"><i class="bi bi-columns-gap"></i></span>
-                    <span class="txt-link">Resgistros</span>
+                    <span class="txt-link">Registros</span>
                 </a>
             </li>
 
