@@ -81,3 +81,9 @@ function confirmarExclusao(id, logradouro, cidade) {
         xhttp.send();
     }
 }
+
+function confirmarLogout() {
+    if (confirm("Tem certeza que deseja encerrar a sessão?")) {
+        window.location.href = "logout.php";
+    }
+}

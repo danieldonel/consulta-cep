@@ -29,9 +29,9 @@
             </li>
 
             <li class="item-menu">
-                <a href="conta.html">
-                    <span class="icon"><i class="bi bi-person-fill"></i></span>
-                    <span class="txt-link">Conta</span>
+                <a href="#" onclick="confirmarLogout()">
+                    <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
+                    <span class="txt-link">Logout</span>
                 </a>
             </li>
         </ul>
