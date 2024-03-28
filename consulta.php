@@ -29,7 +29,7 @@
             </li>
 
             <li class="item-menu">
-                <a href="#" onclick="confirmarLogout()">
+                <a href="logout.php" onclick="return confirmarLogout()">
                     <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
                     <span class="txt-link">Logout</span>
                 </a>
