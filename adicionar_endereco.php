@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "consulta_cep_db";
+$servidor = "localhost";
+$usuario = "root";
+$senha = "";
+$banco_de_dados = "consulta_cep_db";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conexao = new mysqli($servidor, $usuario, $senha, $banco_de_dados);
 
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
+if ($conexao->connect_error) {
+    die("Conexão falhou: " . $conexao->connect_error);
 }
 
 include("conecta.php");
@@ -26,16 +26,17 @@ $uf = $_POST['uf'] ?? '';
 
 $id = $_SESSION["id"];
 
-$sql_check = "SELECT id FROM enderecos WHERE id = '$id' AND logradouro = '$logradouro' AND complemento = '$complemento' AND bairro = '$bairro' AND cidade = '$cidade' AND uf = '$uf'";
-$result_check = $conn->query($sql_check);
+$sql_verifica = "SELECT id FROM enderecos WHERE id = '$id' AND logradouro = '$logradouro' AND complemento = '$complemento' AND bairro = '$bairro' AND cidade = '$cidade' AND uf = '$uf'";
+$resultado_verifica = $conexao->query($sql_verifica);
 
-if ($result_check->num_rows > 0) {
+if ($resultado_verifica->num_rows > 0) {
     echo "Endereço já cadastrado para este usuário.";
 } else {
-    $sql_insert = "INSERT INTO enderecos (id, logradouro, complemento, bairro, cidade, uf) VALUES ('$id', '$logradouro', '$complemento', '$bairro', '$cidade', '$uf')";
-    if ($conn->query($sql_insert) === TRUE) {
+    $sql_inserir = "INSERT INTO enderecos (id, logradouro, complemento, bairro, cidade, uf) VALUES ('$id', '$logradouro', '$complemento', '$bairro', '$cidade', '$uf')";
+    if ($conexao->query($sql_inserir) === TRUE) {
         echo "Endereço adicionado com sucesso.";
     } else {
-        echo "Erro ao adicionar endereço: " . $conn->error;
+        echo "Erro ao adicionar endereço: " . $conexao->error;
     }
 }
+?>
